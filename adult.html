@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-hk">
+<head>
+    <meta charset="UTF-8">
+    <title>成年時期</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="status-box">
+        <div class="status-item">
+            <span class="status-label">金錢：</span>
+            <span class="status-value" id="status-money">Level 0</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">學歷：</span>
+            <span class="status-value" id="status-learning">中學</span>
+        </div>
+    </div>
+
+    <h1>人生遊戲 - 成年時期</h1>
+    <div id="game-container">
+        <div id="event-container"></div>
+        <div id="buttons"></div>
+        <div id="summary-container">
+            <div class="summary-title" id="summary-title"></div>
+            <div class="summary-content" id="summary-content"></div>
+            <div id="control-buttons"></div>
+        </div>
+    </div>
+    
+    <div id="error-box">
+        <div id="error-message"></div>
+        <button class="error-close-btn">確定</button>
+    </div>
+    
+    <div id="transition-display">
+        <div class="transition-gif">
+            <img src="" alt="transition">
+        </div>
+        <div class="transition-message" id="transition-message"></div>
+    </div>
+    
+    <div id="output" style="display: none;"></div>
+    <script src="player.js"></script>
+    <script src="adultStage.js"></script>
+    <script>
+        let player;
+        const stored = localStorage.getItem('player');
+        if (stored) {
+            player = Player.fromJSON(JSON.parse(stored));
+        } else {
+            player = new Player(); // Fallback, but should have data from previous
+        }
+        const stage = new AdultStage(player);
+        stage.startAdultStage();
+    </script>
+</body>
+</html>

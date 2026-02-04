@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>人生遊戲 - 開始你的旅程</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0f0f17;
+      --text: #e0e0ff;
+      --accent: #7b5eff;
+      --accent-dark: #5a3fff;
+      --card: #1a1a2e;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8f9ff;
+      --text: #1a1a3a;
+      --accent: #6d5dfc;
+      --accent-dark: #4a3ac7;
+      --card: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.85;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .start-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 1rem 2.8rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: white;
+      background: var(--accent);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(123, 94, 255, 0.35);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-4px);
+      background: var(--accent-dark);
+      box-shadow: 0 16px 40px rgba(90, 63, 255, 0.5);
+    }
+
+    .start-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: 1px solid var(--text);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 2rem 0;
+      opacity: 0.6;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 3rem; }
+      .subtitle { font-size: 1.1rem; }
+      .start-btn { font-size: 1.2rem; padding: 0.9rem 2.2rem; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <button class="theme-toggle" id="themeBtn" aria-label="切換主題">🌙</button>
+
+  <header>
+    <h1>人生遊戲</h1>
+    <p class="subtitle">
+      從學生時期開始，做出每一個選擇，<br>
+      看看你的人生會走向什麼樣的結局？
+    </p>
+  </header>
+
+  <a href="student.html" class="start-btn">開始人生旅程</a>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+
+    // Check saved preference or system preference
+    const savedTheme = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    html.setAttribute('data-theme', savedTheme);
+    themeBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.textContent = next === 'dark' ? '🌙' : '☀️';
+    });
+  </script>
+
+</body>
+</html>
