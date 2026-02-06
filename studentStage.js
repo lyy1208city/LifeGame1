@@ -35,9 +35,11 @@ class StudentStage {
         }
 
         if (achievementElement){
+            let temp = '';
             for (const achEle of this.player.getAchievement()){
-                achievementElement.textContent = achEle;
+                temp += '[' + achEle + ']' + '<br>';
             }
+            achievementElement.innerHTML = temp;
         }
     }
 

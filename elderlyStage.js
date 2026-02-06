@@ -18,6 +18,7 @@ class ElderlyStage {
     updateStatusBox() {
         const moneyElement = document.getElementById('status-money');
         const learningElement = document.getElementById('status-learning');
+        const achievementElement = document.getElementById('status-achievement');
         
         if (moneyElement) {
             moneyElement.textContent = `Level ${this.player.getMoneyLevel()}`;
@@ -31,6 +32,14 @@ class ElderlyStage {
                 4: '碩士'
             };
             learningElement.textContent = learningMap[this.player.getLearningLevel()] || '中學';
+        }
+
+        if (achievementElement){
+            let temp = '';
+            for (const achEle of this.player.getAchievement()){
+                temp += '[' + achEle + ']' + '<br>';
+            }
+            achievementElement.innerHTML = temp;
         }
     }
 

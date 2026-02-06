@@ -431,3 +431,7 @@ button:disabled {
   display: block;
   margin: 20px auto;
 }
+
+.status-achievement{
+    display: inline;
+}
